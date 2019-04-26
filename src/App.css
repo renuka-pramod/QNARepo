@@ -1,0 +1,62 @@
+/* Common */
+
+.clearfix {
+  clear: both;
+}
+
+.lineBreak {
+  padding: .6em 0;
+}
+
+.margin0 {
+  margin: 0 !important;
+}
+
+/* Input */
+
+input {
+  border-width: 0 0 1px 0;
+  padding: .8em;
+  margin: .8em 0;
+  width: 100%;
+  font-size: 1em;
+  color: #4a4a4a;
+  border-color: #ddd;
+}
+
+input:focus, input:active {
+  outline: none;
+}
+
+input.form-control {
+  margin: 0;
+}
+
+/*Button */
+
+.App button {
+  padding: 0.5em 1.5em;
+  margin: 0.5em 0.5em;
+  border-radius: .5em;
+  border: 1px solid transparent;
+  font-size: 1em;
+  line-height: 1;
+}
+
+.primary-button {
+  background-color: #00bcd4;
+  color: #ffffff;
+}
+
+.secondary-button {
+  background-color: #ddd;
+  color: #4a4a4a;
+}
+
+.btn-group {
+  margin: 1em 0;
+}
+
+.btn-group button:last-child {
+  margin-right: 0;
+}
