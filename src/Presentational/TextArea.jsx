@@ -1,7 +1,7 @@
 import React from "react";
 
 const TextArea = ({ placeholder, className, label, rows }) => (
-    <div>
+    <div className="form-group">
         <label>{label}:</label>
         <textarea rows={rows} className={className} placeholder={placeholder} />
     </div>

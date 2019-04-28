@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Input from '../../Presentational/Input';
 import Button from '../../Presentational/Button';
 import './Login.css';
-import Header from '../Header'
+import Header from '../Header';
 
 
 class Login extends Component {
@@ -46,9 +46,6 @@ class Login extends Component {
         // if (this.state.password == "") {
         //     this.showValidationErr("password", "Password Cannot be empty!");
         // }
-        this.setState({
-            isLogin: !this.state.isLogin
-        })
         console.log(this.state.isLogin)
 
         this.props.history.push({

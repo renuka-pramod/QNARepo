@@ -1,14 +1,16 @@
 import React from "react";
 
-const Input = ({ type, handleChange, placeholder, className, boxClass, label }) => (
+const Input = ({ type, onChangeHandler, placeholder, className, boxClass, label, text,id, name,fileName }) => (
     <div className={`${className} form-group`}>
-        <label>{label}</label>
+        <label htmlFor={text}>{label}</label>
         <input
             placeholder={placeholder}
             type={type}
-            onChange={handleChange}
+            onChange={onChangeHandler}
             required
             className={boxClass}
+            id={id}
+            name= {name}
         />
     </div>
 );

@@ -4,8 +4,7 @@ import SearchFormHandler from './SearchFormHandler';
 import ListViewHandler from './ListViewHandler';
 import { DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-//import fetch from 'fetch';
+import Header from '../Header';
 
 
 class Home extends Component {
@@ -22,36 +21,39 @@ class Home extends Component {
         // .then(res => {
         //     console.log(res)
         // })
-        // fetch('http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions').then(res => {
-        //     console.log(res)
-        // })
-        this.getQuestionsFromApiAsync();
+        fetch('http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions').then(res => {
+            console.log(res)
+        })
+        // this.getQuestionsFromApiAsync();
     }
 
 
-    getQuestionsFromApiAsync = ()=> {
-        var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-             targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
+    getQuestionsFromApiAsync = () => {
+        let proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+            targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
         fetch(proxyUrl + targetUrl)
-          .then((response) => console.log(response.body))
-      }
+            .then((response) => console.log(response.body))
+    }
 
 
     render() {
         return (
-            <div className="home container">
-                <DropdownButton
-                    alignRight
-                    title={<i className="fa fa-plus"></i>}
-                    id="select"
-                    className="pull-right">
-                    <Link to='/multipleChoice'>Multiple Choice Questions</Link>
-                    <Link to='/qAndA'>Questions & Answers</Link>
-                    <Link to='/referenceqandA'>Reference Question & Answers</Link>
-                </DropdownButton>
-                <div className="clearfix"></div>
-                <SearchFormHandler />
-                <ListViewHandler />
+            <div>
+                <Header />
+                <div className="home container">
+                    <DropdownButton
+                        alignRight
+                        title={<i className="fa fa-plus"></i>}
+                        id="select"
+                        className="pull-right">
+                        <Link to='/multipleChoice'>Multiple Choice Questions</Link>
+                        <Link to='/qAndA'>Questions & Answers</Link>
+                        <Link to='/referenceqandA'>Reference Question & Answers</Link>
+                    </DropdownButton>
+                    <div className="clearfix"></div>
+                    <SearchFormHandler />
+                    <ListViewHandler />
+                </div>
             </div>
         );
     }
