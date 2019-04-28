@@ -5,24 +5,37 @@ import ListViewHandler from './ListViewHandler';
 import { DropdownButton } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+//import fetch from 'fetch';
 
 
 class Home extends Component {
     componentDidMount() {
-        axios.get(`http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions`, {
-            mode: 'no-cors',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-            },
-            withCredentials: true,
-            credentials: 'same-origin',
-        })
-        .then(res => {
-            console.log(res)
-        })
+        // axios.get(`http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions`, {
+        //     mode: 'no-cors',
+        //     headers: {
+        //         'Content-Type': 'text/plain',
+        //         'Access-Control-Allow-Origin': '*',
+        //     },
+        //     withCredentials: true,
+        //     credentials: 'same-origin',
+        // })
+        // .then(res => {
+        //     console.log(res)
+        // })
+        // fetch('http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions').then(res => {
+        //     console.log(res)
+        // })
+        this.getQuestionsFromApiAsync();
     }
+
+
+    getQuestionsFromApiAsync = ()=> {
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+             targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
+        fetch(proxyUrl + targetUrl)
+          .then((response) => console.log(response.body))
+      }
+
 
     render() {
         return (
