@@ -21,10 +21,10 @@ class Home extends Component {
         // .then(res => {
         //     console.log(res)
         // })
-        fetch('http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions').then(res => {
-            console.log(res)
-        })
-        // this.getQuestionsFromApiAsync();
+//         fetch('http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions').then(res => {
+//             console.log(res)
+//         })
+         this.getQuestionsFromApiAsync();
     }
 
 
