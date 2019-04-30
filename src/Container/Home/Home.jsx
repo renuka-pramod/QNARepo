@@ -28,12 +28,12 @@ class Home extends Component {
     }
 
 
-    getQuestionsFromApiAsync = () => {
-        let proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-            targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
+    getQuestionsFromApiAsync = ()=> {
+        var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+             targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
         fetch(proxyUrl + targetUrl)
-            .then((response) => console.log(response.body))
-    }
+          .then(u => u.json()).then(j => console.log(j))
+     }
 
 
     render() {
