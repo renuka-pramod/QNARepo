@@ -8,36 +8,34 @@ import Header from '../Header';
 
 
 class Home extends Component {
-    componentDidMount() {
-        // axios.get(`http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions`, {
-        //     mode: 'no-cors',
-        //     headers: {
-        //         'Content-Type': 'text/plain',
-        //         'Access-Control-Allow-Origin': '*',
-        //     },
-        //     withCredentials: true,
-        //     credentials: 'same-origin',
-        // })
-        // .then(res => {
-        //     console.log(res)
-        // })
-//         fetch('http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions').then(res => {
-//             console.log(res)
-//         })
-         this.getQuestionsFromApiAsync();
+
+    constructor() {
+        super();
+        this.state = {
+            details: []
+        }
     }
 
 
-    getQuestionsFromApiAsync = ()=> {
-        var proxyUrl = 'https://cors-anywhere.herokuapp.com/',
-             targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
-        fetch(proxyUrl + targetUrl)
-          .then(u => u.json()).then(j => console.log(j))
-     }
+    async componentDidMount() {
+        await this.getQuestionsFromApiAsync();
+    }
+
+
+    getQuestionsFromApiAsync = () => {
+        let proxyUrl = 'https://cors-anywhere.herokuapp.com/',
+            targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
+            fetch(proxyUrl + targetUrl)
+            .then(resp => resp.json()).then(data => {
+                this.setState({
+                    details: data
+                })
+            })
+    }
 
 
     render() {
-        return (
+        return this.state.details && (
             <div>
                 <Header />
                 <div className="home container">
@@ -52,7 +50,7 @@ class Home extends Component {
                     </DropdownButton>
                     <div className="clearfix"></div>
                     <SearchFormHandler />
-                    <ListViewHandler />
+                    <ListViewHandler details= {this.state.details}/>
                 </div>
             </div>
         );
