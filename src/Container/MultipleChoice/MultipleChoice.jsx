@@ -29,6 +29,10 @@ class MultipleChoice extends Component {
         }
     }
 
+    componentDidMount(){
+        console.log(this.props.location.state.questionData)
+    }
+
 
     stringifyFormData=(fd)=> {
         const data = {};
@@ -76,7 +80,7 @@ class MultipleChoice extends Component {
     render() {
         let { universityValues, classValues, subjectValues, chapterValues, typeValues, probabilityValues, answerValues } = this.state;
         const { res } = this.state;
-        console.log(res)
+        console.log("multiple", res);
         return (
             <div>
                 <Header />
@@ -157,7 +161,7 @@ class MultipleChoice extends Component {
                         <div className="lineBreak"></div>
                         <div className="float-right btn-group">
                             <Button
-                                handleClick={this.handleClick} F
+                                handleClick={this.handleClick}
                                 name="Cancel"
                                 className="secondary-button"
                             />

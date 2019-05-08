@@ -41,7 +41,7 @@ input.form-control {
 .selectImage .typeFile input {
   opacity: 0;
   display: inline-block;
-  width: auto;
+  width: 20px;
   position: absolute;
   left: 0;
   padding: 0;

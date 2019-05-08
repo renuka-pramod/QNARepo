@@ -12,7 +12,8 @@ class Home extends Component {
     constructor() {
         super();
         this.state = {
-            details: []
+            details: [],
+            questionData: {}
         }
     }
 
@@ -25,7 +26,7 @@ class Home extends Component {
     getQuestionsFromApiAsync = () => {
         let proxyUrl = 'https://cors-anywhere.herokuapp.com/',
             targetUrl = 'http://myhistoryclass.co.in/sch/api/Questions/GetAllQuestions'
-            fetch(proxyUrl + targetUrl)
+        fetch(proxyUrl + targetUrl)
             .then(resp => resp.json()).then(data => {
                 this.setState({
                     details: data
@@ -33,8 +34,16 @@ class Home extends Component {
             })
     }
 
+    editQuestion = (data) => {
+        this.setState({
+            questionData: data
+        });
+    }
+
 
     render() {
+        const { questionData } = this.state;
+
         return this.state.details && (
             <div>
                 <Header />
@@ -44,13 +53,16 @@ class Home extends Component {
                         title={<i className="fa fa-plus"></i>}
                         id="select"
                         className="pull-right">
-                        <Link to='/multipleChoice'>Multiple Choice Questions</Link>
+                        <Link to={{
+                            pathname: '/multipleChoice',
+                            state: { questionData: questionData }
+                        }}>Multiple Choice Questions</Link>
                         <Link to='/qAndA'>Questions & Answers</Link>
                         <Link to='/referenceqandA'>Reference Question & Answers</Link>
                     </DropdownButton>
                     <div className="clearfix"></div>
                     <SearchFormHandler />
-                    <ListViewHandler details= {this.state.details}/>
+                    <ListViewHandler details={this.state.details} editQuestion={this.editQuestion} questionData={questionData} />
                 </div>
             </div>
         );

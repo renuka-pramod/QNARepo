@@ -1,5 +1,7 @@
 import React from "react";
 import './Home.css';
+import { Link } from 'react-router-dom';
+
 
 const ListViewHandler = (props) => {
     return props.details && (
@@ -17,8 +19,7 @@ const ListViewHandler = (props) => {
             </thead>
             <tbody>
                 {
-                    props.details.map((detail,index) => {
-                        console.log(detail)
+                    props.details.map((detail, index) => {
                         return (
                             <tr key={index}>
                                 <td className="text-center">{detail.ID}</td>
@@ -28,7 +29,22 @@ const ListViewHandler = (props) => {
                                 <td>Science</td>
                                 <td>{detail.ChapterID}</td>
                                 <td>
-                                    <a><i className="fa fa-edit"></i></a>
+                                    {(() => {
+                                        switch (detail.Template) {
+                                            case "MCQ":
+                                                return <Link to={{
+                                                    pathname: '/multipleChoice', 
+                                                    state: { questionData: props.questionData } 
+                                                }} onClick={() => props.editQuestion(detail)}> 
+                                                    <i className="fa fa-edit"></i>
+                                                </Link>
+                                            case "Objective":
+                                                return "#00FF00";
+
+                                            case "QA":
+                                                return "#0000FF";
+                                        }
+                                    })()}
                                 </td>
                             </tr>
                         )
